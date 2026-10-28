@@ -1,0 +1,73 @@
+﻿@model WeddingInfo
+
+@{
+    ViewData["Title"] = "Ta bort bröllopsinformation";
+}
+
+<section class="delete-page">
+
+    <div class="delete-card">
+
+        <div class="delete-icon">
+            ♡
+        </div>
+
+        <span class="section-label">
+            Bekräfta
+        </span>
+
+        <h1>Ta bort information</h1>
+
+        <p>
+            Är du säker på att du vill ta bort denna
+            bröllopsinformation?
+        </p>
+
+        <div class="delete-info">
+
+            <div>
+                <strong>Välkomstmeddelande</strong>
+                <p>@Model.WelcomeMessage</p>
+            </div>
+
+            <div>
+                <strong>Plats</strong>
+                <p>@Model.VenueInformation</p>
+            </div>
+
+            <div>
+                <strong>Kontakt</strong>
+                <p>@Model.ContactInformation</p>
+            </div>
+
+        </div>
+
+        <p class="delete-warning">
+            Denna åtgärd kan inte ångras.
+        </p>
+
+        <form asp-action="Delete"
+              method="post">
+
+            <input asp-for="Id"
+                   type="hidden" />
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button delete-button">
+                    Ja, ta bort
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Avbryt
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>

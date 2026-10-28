@@ -1,0 +1,207 @@
+﻿@model WeddingInfo
+
+@{
+    ViewData["Title"] = "Ändra bröllopsinformation";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="section-label">
+                Bröllopsinformation
+            </span>
+
+            <h1>Ändra information</h1>
+
+            <p>
+                Uppdatera informationen som visas på webbplatsen.
+            </p>
+
+        </div>
+
+        <form asp-action="Edit"
+              method="post"
+              enctype="multipart/form-data">
+
+            <input asp-for="Id" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="EventId">
+                    Evenemang
+                </label>
+
+                <select asp-for="EventId"
+                        asp-items="ViewBag.Events"
+                        class="form-control">
+
+                    <option value="">
+                        Välj evenemang
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroTitle">
+                    Titel på startsidan
+                </label>
+
+                <input asp-for="HeroTitle"
+                       class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroSubtitle">
+                    Underrubrik på startsidan
+                </label>
+
+                <input asp-for="HeroSubtitle"
+                       class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroDescription">
+                    Beskrivning på startsidan
+                </label>
+
+                <textarea asp-for="HeroDescription"
+                          class="form-control"
+                          rows="5">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Bilder
+                </label>
+
+                <label class="upload-area">
+
+                    <span class="upload-icon">📸</span>
+
+                    <span class="upload-title">
+                        Välj bilder
+                    </span>
+
+                    <span class="upload-text">
+                        Klicka här eller dra bilder hit
+                    </span>
+
+                    <input asp-for="ImageFiles"
+                           type="file"
+                           multiple
+                           accept="image/*"
+                           class="upload-input" />
+
+                </label>
+
+            </div>
+
+            @if (Model.Images.Any())
+            {
+                <div class="existing-images">
+
+                    <h3>Befintliga bilder</h3>
+
+                    <div class="image-gallery">
+
+                        @foreach (var image in Model.Images)
+                        {
+                            <div class="image-card">
+
+                                <img src="@image.ImagePath"
+                                     alt="Bröllopsbild"
+                                     class="gallery-image" />
+
+                                <a asp-action="DeleteImage"
+                                   asp-route-id="@image.Id"
+                                   class="wedding-button wedding-button-outline">
+                                    Ta bort
+                                </a>
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            }
+
+            <div class="form-group">
+
+                <label asp-for="WelcomeMessage">
+                    Välkomstmeddelande
+                </label>
+
+                <textarea asp-for="WelcomeMessage"
+                          class="form-control"
+                          rows="6">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="VenueInformation">
+                    Platsinformation
+                </label>
+
+                <textarea asp-for="VenueInformation"
+                          class="form-control"
+                          rows="6">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="ContactInformation">
+                    Kontaktinformation
+                </label>
+
+                <textarea asp-for="ContactInformation"
+                          class="form-control"
+                          rows="5">
+                </textarea>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button">
+                    Spara ändringar
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Avbryt
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

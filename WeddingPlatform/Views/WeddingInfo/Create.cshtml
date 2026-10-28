@@ -1,0 +1,165 @@
+﻿@model WeddingInfo
+
+@{
+    ViewData["Title"] = "Lägg till bröllopsinformation";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="section-label">
+                Bröllopsinformation
+            </span>
+
+            <h1>Lägg till information</h1>
+
+            <p>
+                Fyll i information som ska visas på webbplatsen.
+            </p>
+
+        </div>
+
+        <form asp-action="Create"
+              method="post"
+              enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="EventId">
+                    Evenemang
+                </label>
+
+                <select asp-for="EventId"
+                        asp-items="ViewBag.Events"
+                        class="form-control">
+
+                    <option value="">
+                        Välj evenemang
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroTitle">
+                    Titel på startsidan
+                </label>
+
+                <input asp-for="HeroTitle"
+                       class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroSubtitle">
+                    Underrubrik på startsidan
+                </label>
+
+                <input asp-for="HeroSubtitle"
+                       class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroDescription">
+                    Beskrivning på startsidan
+                </label>
+
+                <textarea asp-for="HeroDescription"
+                          class="form-control"
+                          rows="5">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="ImageFiles">
+                    Bilder
+                </label>
+
+                <input asp-for="ImageFiles"
+                       type="file"
+                       multiple
+                       accept="image/*"
+                       class="form-control" />
+
+                <small class="text-muted">
+                    Du kan välja en eller flera bilder.
+                </small>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="WelcomeMessage">
+                    Välkomstmeddelande
+                </label>
+
+                <textarea asp-for="WelcomeMessage"
+                          class="form-control"
+                          rows="6">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="VenueInformation">
+                    Platsinformation
+                </label>
+
+                <textarea asp-for="VenueInformation"
+                          class="form-control"
+                          rows="6">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="ContactInformation">
+                    Kontaktinformation
+                </label>
+
+                <textarea asp-for="ContactInformation"
+                          class="form-control"
+                          rows="5">
+                </textarea>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button">
+                    Spara information
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Avbryt
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

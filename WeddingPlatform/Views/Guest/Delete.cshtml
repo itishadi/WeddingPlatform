@@ -1,0 +1,60 @@
+﻿@model Guest
+
+@{
+    ViewData["Title"] = "Ta bort gäst";
+}
+
+<section class="delete-page">
+
+    <div class="delete-card">
+
+        <div class="delete-icon">
+            ♡
+        </div>
+
+        <span class="section-label">
+            Bekräfta
+        </span>
+
+        <h1>Ta bort gäst</h1>
+
+        <p>
+            Är du säker på att du vill ta bort följande gäst?
+        </p>
+
+        <div class="delete-guest-info">
+
+            <strong>@Model.Name</strong>
+
+            <span>@Model.Email</span>
+
+        </div>
+
+        <p class="delete-warning">
+            Denna åtgärd kan inte ångras.
+        </p>
+
+        <form asp-action="Delete"
+              method="post">
+
+            <input asp-for="Id" type="hidden" />
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button delete-button">
+                    Ja, ta bort
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Avbryt
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>

@@ -1,0 +1,43 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WeddingPlatform.Data;
+using WeddingPlatform.ViewModels;
+
+namespace WeddingPlatform.Controllers
+{
+    public class AdminController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public AdminController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Admin
+        public async Task<IActionResult> Index()
+        {
+            var model = new AdminDashboardViewModel
+            {
+                TotalGuests = await _context.Guests.CountAsync(),
+
+                AttendingGuests = await _context.Guests
+                    .CountAsync(g => g.WillAttend == true),
+
+                NotAttendingGuests = await _context.Guests
+                    .CountAsync(g => g.WillAttend == false),
+
+                NotAnsweredGuests = await _context.Guests
+                    .CountAsync(g => g.WillAttend == null),
+
+                TotalAttendants = await _context.Guests
+                    .Where(g => g.WillAttend == true)
+                    .SumAsync(g => g.NumberOfAttendants),
+
+                TotalEvents = await _context.Events.CountAsync()
+            };
+
+            return View(model);
+        }
+    }
+}
