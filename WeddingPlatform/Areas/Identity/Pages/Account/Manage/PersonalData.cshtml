@@ -1,4 +1,4 @@
-@page
+@* @page
 @model PersonalDataModel
 @{
     ViewData["Title"] = "Personal Data";
@@ -21,6 +21,70 @@
         </p>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+ *@
+
+@page
+@model PersonalDataModel
+
+@{
+    ViewData["Title"] = "Personuppgifter";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="section-label">
+                Konto
+            </span>
+
+            <h1>Personuppgifter</h1>
+
+            <p>
+                Här kan du ladda ner eller ta bort de personuppgifter som är kopplade till ditt konto.
+            </p>
+
+        </div>
+
+        <div class="alert alert-warning">
+
+            <strong>Varning:</strong>
+            Om du tar bort ditt konto kommer all kontoinformation att tas bort permanent.
+            Åtgärden kan inte ångras.
+
+        </div>
+
+        <div class="d-flex gap-3 flex-wrap">
+
+            <form id="download-data"
+                  asp-page="DownloadPersonalData"
+                  method="post">
+
+                <button class="wedding-button"
+                        type="submit">
+                    Ladda ner mina uppgifter
+                </button>
+
+            </form>
+
+            <a id="delete"
+               asp-page="DeletePersonalData"
+               class="wedding-button wedding-button-outline">
+                Ta bort konto
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

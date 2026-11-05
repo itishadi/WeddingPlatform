@@ -1,4 +1,4 @@
-@{
+@* @{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
     {
         Layout = parentLayout.ToString();
@@ -22,6 +22,53 @@
             @RenderBody()
         </div>
     </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+ *@
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) &&
+        parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<section class="page-header">
+
+    <span class="section-label">
+        Konto
+    </span>
+
+    <h1>Mitt konto</h1>
+
+    <p>
+        Hantera dina kontouppgifter och säkerhetsinställningar.
+    </p>
+
+</section>
+
+<div class="row">
+
+    <div class="col-lg-3 mb-4">
+
+        <partial name="_ManageNav" />
+
+    </div>
+
+    <div class="col-lg-9">
+
+        @RenderBody()
+
+    </div>
+
 </div>
 
 @section Scripts {

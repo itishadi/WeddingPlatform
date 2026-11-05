@@ -1,4 +1,4 @@
-@page
+@* @page
 @model LogoutModel
 @{
     ViewData["Title"] = "Log out";
@@ -19,3 +19,69 @@
         }
     }
 </header>
+ *@
+@page
+@model LogoutModel
+
+@{
+    ViewData["Title"] = "Logga ut";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="section-label">
+                Konto
+            </span>
+
+            <h1>Logga ut</h1>
+
+            <p>
+                Hantera din inloggning på WeddingPlatform.
+            </p>
+
+        </div>
+
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Home")"
+                  method="post">
+
+                <button type="submit"
+                        class="wedding-button">
+                    Logga ut
+                </button>
+
+            </form>
+        }
+        else
+        {
+            <div class="text-center">
+
+                <div class="empty-heart">
+                    ?
+                </div>
+
+                <h2>Du har loggats ut</h2>
+
+                <p>
+                    Du har loggats ut från WeddingPlatform.
+                </p>
+
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="wedding-button">
+                    Till startsidan
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</section>

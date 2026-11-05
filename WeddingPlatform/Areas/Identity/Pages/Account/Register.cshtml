@@ -1,4 +1,4 @@
-@page
+@* @page
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
@@ -61,6 +61,115 @@
         </section>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+ *@
+
+@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Registrera konto";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="section-label">
+                Konto
+            </span>
+
+            <h1>Skapa konto</h1>
+
+            <p>
+                Registrera ett konto för att få tillgång till plattformens funktioner.
+            </p>
+
+        </div>
+
+        <form id="registerForm"
+              asp-route-returnUrl="@Model.ReturnUrl"
+              method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.Email">
+                    E-postadress
+                </label>
+
+                <input asp-for="Input.Email"
+                       class="form-control"
+                       autocomplete="username" />
+
+                <span asp-validation-for="Input.Email"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.Password">
+                    Lösenord
+                </label>
+
+                <input asp-for="Input.Password"
+                       class="form-control"
+                       autocomplete="new-password" />
+
+                <span asp-validation-for="Input.Password"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.ConfirmPassword">
+                    Bekräfta lösenord
+                </label>
+
+                <input asp-for="Input.ConfirmPassword"
+                       class="form-control"
+                       autocomplete="new-password" />
+
+                <span asp-validation-for="Input.ConfirmPassword"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <button id="registerSubmit"
+                    type="submit"
+                    class="wedding-button">
+                Registrera konto
+            </button>
+
+        </form>
+
+        <div class="mt-4">
+
+            <p>
+                Har du redan ett konto?
+                <a asp-page="./Login">
+                    Logga in här
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

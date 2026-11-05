@@ -1,4 +1,4 @@
-@page
+@* @page
 @model LoginModel
 
 @{
@@ -77,6 +77,110 @@
         </section>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+ *@
+
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Logga in";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="section-label">
+                Konto
+            </span>
+
+            <h1>Logga in</h1>
+
+            <p>
+                Logga in för att hantera ditt konto och få tillgång till
+                dina funktioner.
+            </p>
+
+        </div>
+
+        <form id="account" method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.Email">
+                    E-postadress
+                </label>
+
+                <input asp-for="Input.Email"
+                       class="form-control"
+                       autocomplete="username" />
+
+                <span asp-validation-for="Input.Email"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.Password">
+                    Lösenord
+                </label>
+
+                <input asp-for="Input.Password"
+                       class="form-control"
+                       autocomplete="current-password" />
+
+                <span asp-validation-for="Input.Password"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-check mb-3">
+
+                <input asp-for="Input.RememberMe"
+                       class="form-check-input" />
+
+                <label asp-for="Input.RememberMe"
+                       class="form-check-label">
+                    Kom ihåg mig
+                </label>
+
+            </div>
+
+            <button id="login-submit"
+                    type="submit"
+                    class="wedding-button">
+                Logga in
+            </button>
+
+        </form>
+
+        <div class="mt-4">
+
+            <p>
+                Har du inget konto?
+                <a asp-page="./Register">
+                    Registrera dig här
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

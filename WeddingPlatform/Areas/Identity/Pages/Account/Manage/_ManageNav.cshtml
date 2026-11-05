@@ -1,4 +1,4 @@
-@inject SignInManager<ApplicationUser> SignInManager
+@* @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
@@ -12,4 +12,53 @@
     }
     <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+</ul>
+ *@
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    var hasExternalLogins =
+        (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<ul class="nav flex-column">
+
+    <li class="nav-item mb-2">
+        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)"
+           asp-page="./Index">
+            Mitt konto
+        </a>
+    </li>
+
+    <li class="nav-item mb-2">
+        <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)"
+           asp-page="./Email">
+            E-post
+        </a>
+    </li>
+
+    <li class="nav-item mb-2">
+        <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)"
+           asp-page="./ChangePassword">
+            Byt lösenord
+        </a>
+    </li>
+
+    @if (hasExternalLogins)
+    {
+        <li class="nav-item mb-2">
+            <a class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)"
+               asp-page="./ExternalLogins">
+                Externa inloggningar
+            </a>
+        </li>
+    }
+
+    <li class="nav-item mb-2">
+        <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)"
+           asp-page="./PersonalData">
+            Personuppgifter
+        </a>
+    </li>
+
 </ul>
