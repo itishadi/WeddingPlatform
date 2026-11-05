@@ -115,21 +115,24 @@
 
     </div>
 
-    <div class="page-actions">
+@if (User.IsInRole("Admin"))
+    {
+        <div class="page-actions">
 
-        <a asp-action="Edit"
-           asp-route-id="@info.Id"
-           class="wedding-button">
-            Ändra information
-        </a>
+            <a asp-action="Edit"
+               asp-route-id="@info.Id"
+               class="wedding-button">
+                Ändra information
+            </a>
 
-        <a asp-action="Delete"
-           asp-route-id="@info.Id"
-           class="wedding-button wedding-button-outline">
-            Ta bort
-        </a>
+            <a asp-action="Delete"
+               asp-route-id="@info.Id"
+               class="wedding-button wedding-button-outline">
+                Ta bort
+            </a>
 
-    </div>
+        </div>
+    }
 }
 else
 {
@@ -147,10 +150,13 @@ else
             Lägg till information och koppla den till ett evenemang.
         </p>
 
-        <a asp-action="Create"
-           class="wedding-button">
-            Lägg till information
-        </a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create"
+               class="wedding-button">
+                Lägg till information
+            </a>
+        }
 
     </div>
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WeddingPlatform.Data;
@@ -48,6 +49,7 @@ namespace WeddingPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(WeddingInfo weddingInfo)
         {
             if (!ModelState.IsValid)
@@ -103,6 +105,7 @@ namespace WeddingPlatform.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -130,6 +133,7 @@ namespace WeddingPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(
             int id,
             WeddingInfo weddingInfo)
@@ -204,6 +208,7 @@ namespace WeddingPlatform.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -228,6 +233,7 @@ namespace WeddingPlatform.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var weddingInfo = await _context.WeddingInfos
@@ -243,6 +249,7 @@ namespace WeddingPlatform.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteImage(int id)
         {
             var image = await _context.WeddingImages

@@ -19,6 +19,7 @@ namespace WeddingPlatform.Controllers
         public async Task<IActionResult> GetEvents()
         {
             var eventsList = await _context.Events
+                .OrderBy(e => e.EventDate)
                 .Select(e => new
                 {
                     e.Id,

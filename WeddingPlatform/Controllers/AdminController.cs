@@ -29,7 +29,7 @@ namespace WeddingPlatform.Controllers
 
                 NotAttendingGuests = await _context.Guests
                     .CountAsync(g => g.WillAttend == false),
-
+                    
                 NotAnsweredGuests = await _context.Guests
                     .CountAsync(g => g.WillAttend == null),
 

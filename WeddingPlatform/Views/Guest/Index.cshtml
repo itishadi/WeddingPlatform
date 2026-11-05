@@ -204,21 +204,24 @@
                                     Visa
                                 </a>
 
-                                <a asp-action="Edit"
-                                   asp-route-id="@guest.Id">
-                                    Ändra
-                                </a>
-
                                 <a asp-action="RSVP"
                                    asp-route-id="@guest.Id">
                                     OSA
                                 </a>
 
-                                <a asp-action="Delete"
-                                   asp-route-id="@guest.Id"
-                                   class="danger-link">
-                                    Ta bort
-                                </a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-action="Edit"
+                                       asp-route-id="@guest.Id">
+                                        Ändra
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@guest.Id"
+                                       class="danger-link">
+                                        Ta bort
+                                    </a>
+                                }
 
                             </div>
 

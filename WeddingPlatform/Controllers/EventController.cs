@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WeddingPlatform.Data;
 using WeddingPlatform.Models;
@@ -42,6 +43,7 @@ namespace WeddingPlatform.Controllers
         }
 
         // GET: Event/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -50,6 +52,7 @@ namespace WeddingPlatform.Controllers
         // POST: Event/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(Event weddingEvent)
         {
             if (!ModelState.IsValid)
@@ -73,6 +76,7 @@ namespace WeddingPlatform.Controllers
         }
 
         // GET: Event/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,6 +93,7 @@ namespace WeddingPlatform.Controllers
         // POST: Event/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, Event weddingEvent)
         {
             if (id != weddingEvent.Id)
@@ -124,6 +129,7 @@ namespace WeddingPlatform.Controllers
         }
 
         // GET: Event/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,6 +149,7 @@ namespace WeddingPlatform.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var weddingEvent = await _context.Events.FindAsync(id);

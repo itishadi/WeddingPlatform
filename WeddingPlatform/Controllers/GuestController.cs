@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WeddingPlatform.Data;
 using WeddingPlatform.Models;
@@ -120,6 +121,7 @@ namespace WeddingPlatform.Controllers
         }
 
         // GET: Guest/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -153,6 +155,7 @@ namespace WeddingPlatform.Controllers
         // POST: Guest/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(
             int id,
             GuestEditViewModel model)
@@ -271,6 +274,7 @@ namespace WeddingPlatform.Controllers
         }
 
         // GET: Guest/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -294,6 +298,7 @@ namespace WeddingPlatform.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var guest = await _context.Guests.FindAsync(id);
